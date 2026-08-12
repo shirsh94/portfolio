@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f5f0; /* Lighter, cleaner newsprint/cream */
+  --foreground: #1a1a1a;
+  --accent: #5e5a52;
+  --border: #c8c6c1;
+  --terminal-bg: #e2e0dd;
+  --terminal-text: #1a1a1a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme='dark'] {
+  --background: #121212; /* Deep Charcoal Paper */
+  --foreground: #e2e0dd; /* Off-white text for better readability */
+  --accent: #88847c;
+  --border: #2a2a2a;
+  --terminal-bg: #000000;
+  --terminal-text: #e2e0dd;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.newspaper-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.border-ink {
+  border-color: var(--foreground);
+}
+
+.text-ink {
+  color: var(--foreground);
+}
+
+.bg-paper {
+  background-color: var(--background);
+}
+
+.paper-texture {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+/* Enhanced Paper Texture and Grain with Jitter Animation */
+.paper-texture::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+    url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: -1; /* Move to background */
+  animation: grain 8s steps(10) infinite;
+}
+
+[data-theme='dark'] .paper-texture::before {
+  opacity: 0.08; /* Subtler texture for dark mode */
+}
+
+@keyframes grain {
+  0%, 100% { transform:translate(0, 0) }
+  10% { transform:translate(-5%, -10%) }
+  20% { transform:translate(-15%, 5%) }
+  30% { transform:translate(7%, -25%) }
+  40% { transform:translate(-5%, 25%) }
+  50% { transform:translate(-15%, 10%) }
+  60% { transform:translate(15%, 0) }
+  70% { transform:translate(0, 15%) }
+  80% { transform:translate(3%, 35%) }
+  90% { transform:translate(-10%, 10%) }
+}
+
+/* Horizontal Paper Lines (Ribbed/Scanline Style) & Vignette */
+.paper-texture::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 3px
+    ),
+    radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.02) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+[data-theme='dark'] .paper-texture::after {
+  background:
+    repeating-linear-gradient(
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 3px
+    ),
+    radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+  background-size: 100% 3px, 100% 100%;
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(34, 197, 94, 0.3);
+    border-radius: 10px;
+  }
 }
