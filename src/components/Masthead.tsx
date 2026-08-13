@@ -6,6 +6,12 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { getYearsOfExperience } from "@/lib/utils";
 
+/**
+ * Masthead component for the portfolio.
+ * Contains the main title, contact links, and theme toggle.
+ *
+ * Git push test: Verifying changes are tracked correctly.
+ */
 export default function Masthead() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);

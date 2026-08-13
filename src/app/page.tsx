@@ -1,3 +1,9 @@
+/**
+ * Main entry point for the Shirsh Shukla Portfolio application.
+ * This component orchestrates the various sections of the portfolio.
+ *
+ * Git push test: This comment is added to verify the git push workflow.
+ */
 import Masthead from "@/components/Masthead";
 import LeadStory from "@/components/LeadStory";
 import ServiceRecord from "@/components/ServiceRecord";
