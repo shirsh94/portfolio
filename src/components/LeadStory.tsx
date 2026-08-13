@@ -34,7 +34,7 @@ export default function LeadStory() {
 
       <div className="col-span-12 md:col-span-4 space-y-8">
         <div className="border-4 border-foreground p-1 bg-foreground">
-          <div className="relative aspect-square w-full overflow-hidden bg-paper mb-1">
+          <div className="relative aspect-square w-full overflow-hidden bg-[#f7f5f0] mb-1">
             <Image
               src={imageSrc}
               alt="Shirsh Shukla - Subject Portrait"

@@ -1,0 +1,9 @@
+
+> new_tr@0.1.0 start
+> next start -p 3001
+
+▲ Next.js 16.3.0
+- Local:         http://localhost:3001
+- Network:       http://192.168.29.249:3001
+✓ Ready in 216ms
+✓ Running next.config.ts took 25ms
