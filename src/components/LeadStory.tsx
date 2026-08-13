@@ -1,21 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { getYearsOfExperience } from "@/lib/utils";
 
 export default function LeadStory() {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const years = getYearsOfExperience();
-
-  useEffect(() => {
-    const handle = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(handle);
-  }, []);
-
-  const imageSrc = mounted && theme === "dark" ? "/img_dark.png" : "/img.png";
+  const imageSrc = "/img.png";
 
   return (
     <section className="newspaper-grid gap-y-8 mb-16">
@@ -49,11 +39,8 @@ export default function LeadStory() {
               src={imageSrc}
               alt="Shirsh Shukla - Subject Portrait"
               fill
-              className={`object-cover transition-all duration-500 ${
-                mounted && theme === "dark"
-                  ? "grayscale-0 contrast-100"
-                  : "grayscale contrast-125 mix-blend-multiply hover:grayscale-0 hover:mix-blend-normal"
-              }`}
+              sizes="(min-width: 768px) 33vw, 100vw"
+              className="object-cover"
               priority
             />
           </div>
