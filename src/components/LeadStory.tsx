@@ -5,7 +5,7 @@ import { getYearsOfExperience } from "@/lib/utils";
 
 export default function LeadStory() {
   const years = getYearsOfExperience();
-  const imageSrc = "/img.png";
+  const imageSrc = "/img_paper.png";
 
   return (
     <section className="newspaper-grid gap-y-8 mb-16">
@@ -40,7 +40,7 @@ export default function LeadStory() {
               alt="Shirsh Shukla - Subject Portrait"
               fill
               sizes="(min-width: 768px) 33vw, 100vw"
-              className="object-cover"
+              className="object-cover bg-[#f7f5f0] mix-blend-normal"
               priority
             />
           </div>
